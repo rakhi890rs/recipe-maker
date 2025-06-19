@@ -1,24 +1,32 @@
-import React, { useContext } from "react";
-import { recipecontext } from "../context/RecipeContext";
+import React, { useContext } from 'react';
+import { recipecontext } from '../context/RecipeContext';
+import { Link } from 'react-router-dom'; // ✅ Import Link
 
 const Recipes = () => {
   const { data } = useContext(recipecontext);
 
-  console.log("data from context:", data); // 🔍 check if data is coming
-
   return (
-    <div className="p-4">
-      {data && data.length > 0 ? (
-        data.map((recipe) => (
-          <div key={recipe.id} className="text-white border-b py-2">
-            <h1 className="text-xl font-bold">{recipe.title}</h1>
-            <p className="text-sm italic">Chef: {recipe.chef}</p>
-            <img src={recipe.image} alt={recipe.title} className="w-40 h-28 object-cover my-2" />
-            <p>{recipe.description}</p>
-          </div>
-        ))
+    <div>
+      <h1 className="text-xl font-semibold underline mb-4">All Recipes</h1>
+      {data.length === 0 ? (
+        <p>No recipes available</p>
       ) : (
-        <p className="text-gray-500">No recipes added yet</p>
+        <div className="grid grid-cols-2 gap-4">
+          {data.map((recipe) => (
+            <Link to={`/recipe/${recipe.id}`} key={recipe.id} className="hover:scale-105 duration-300">
+              <div className="bg-gray-800 p-4 rounded cursor-pointer">
+                <img
+                  src={recipe.image}
+                  alt="dish"
+                  className="w-full h-48 object-cover rounded mb-2"
+                />
+                <h2 className="text-lg font-bold">{recipe.title}</h2>
+                <p className="text-sm text-gray-400">By: {recipe.chef}</p>
+                <p className="text-sm mt-2 line-clamp-2">{recipe.description}</p>
+              </div>
+            </Link>
+          ))}
+        </div>
       )}
     </div>
   );

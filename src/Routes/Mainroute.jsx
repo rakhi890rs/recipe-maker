@@ -4,7 +4,7 @@ import Home from '../Pages/Home'
 import Recipes from '../Pages/Recipes'
 import About from '../Pages/About'
 import Create from '../Pages/Create'
-
+import SinglePage from '../Pages/SinglePage' 
 
 const Mainroute = () => {
   return (
@@ -13,7 +13,7 @@ const Mainroute = () => {
       <Route path="/recipes" element={<Recipes />} />
       <Route path="/about" element={<About />} />
       <Route path="/create-recipe" element={<Create />} />
-
+      <Route path="/recipe/:id" element={<SinglePage />} />
     </Routes>
   )
 }
