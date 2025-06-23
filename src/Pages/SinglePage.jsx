@@ -23,12 +23,12 @@ const SinglePage = () => {
     }
   }, [recipe, reset, id]);
 
-  const toggleFav = () => {
-    setIsFav((prev) => {
-      const updated = !prev;
-      localStorage.setItem(`fav-${id}`, updated);
-      return updated;
-    });
+  const favourite =JSON.parse(localStorage.getItem("fav"));
+  const favouriteHandler = () => {
+    const updated = !isFav;
+    setIsFav(updated);
+    localStorage.setItem(`fav-${id}`, updated);
+    toast.info(updated ? 'Added to Favorites' : 'Removed from Favorites');
   };
 
   const onSubmit = (updatedRecipe) => {
@@ -59,7 +59,7 @@ const SinglePage = () => {
       <div className='w-1/2 relative'>
 
         {/* ❤️ Favorite Toggle - Top Right of Image */}
-        <span onClick={toggleFav} className='absolute top-2 right-2 cursor-pointer'>
+        <span onClick={favouriteHandler} className='absolute top-2 right-2 cursor-pointer'>
           {isFav ? (
             <HeartSolid className='w-8 h-8 text-red-600' />
           ) : (
