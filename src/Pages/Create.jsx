@@ -11,15 +11,26 @@ const Create = () => {
   const { register, handleSubmit, reset } = useForm();
   const navigate = useNavigate(); // ✅ Correct placement
 
-  const SubmitHandler = (recipe) => {
-    recipe.id = nanoid();
-    console.log(recipe);
+  // const SubmitHandler = (recipe) => {
+  //   recipe.id = nanoid();
+  //   console.log(recipe);
 
-    setdata([...data, recipe]);
-    toast.success("New recipe created");
-    reset();
-    navigate("/recipes"); // ✅ Use lowercase navigate
-  };
+  //   setdata([...data, recipe]);
+  //   localStorage.setItem("recipes",JSON.stringify(copydata));
+  //   toast.success("New recipe created");
+  //   reset();
+  //   navigate("/recipes"); // ✅ Use lowercase navigate
+  // };
+  const SubmitHandler = (recipe) => {
+  recipe.id = nanoid();
+  const updatedData = [...data, recipe];
+  setdata(updatedData);
+  localStorage.setItem("recipes", JSON.stringify(updatedData));
+  toast.success("New recipe created");
+  reset();
+  navigate("/recipes");
+};
+
 
 
 

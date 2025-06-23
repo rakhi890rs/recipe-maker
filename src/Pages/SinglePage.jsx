@@ -1,50 +1,80 @@
-import React, { useContext, useEffect } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
-import { recipecontext } from '../context/RecipeContext'
-import { useForm } from 'react-hook-form'
-import { toast } from 'react-toastify'
+import React, { useContext, useEffect, useState } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { recipecontext } from '../context/RecipeContext';
+import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
+import { HeartIcon as HeartOutline } from '@heroicons/react/24/outline';
+import { HeartIcon as HeartSolid } from '@heroicons/react/24/solid';
 
 const SinglePage = () => {
-  const { data, setdata } = useContext(recipecontext)
-  const { id } = useParams()
-  const navigate = useNavigate()
-  const recipe = data.find((item) => item.id === id)
+  const { data, setdata } = useContext(recipecontext);
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const recipe = data.find((item) => item.id === id);
 
-  const { register, handleSubmit, reset } = useForm()
+  const [isFav, setIsFav] = useState(false);
+  const { register, handleSubmit, reset } = useForm();
 
-  // Fill form with existing data
   useEffect(() => {
     if (recipe) {
-      reset(recipe)
+      reset(recipe);
+      const favStatus = localStorage.getItem(`fav-${id}`);
+      setIsFav(favStatus === 'true');
     }
-  }, [recipe, reset])
+  }, [recipe, reset, id]);
 
-  // Submit updated data
+  const toggleFav = () => {
+    setIsFav((prev) => {
+      const updated = !prev;
+      localStorage.setItem(`fav-${id}`, updated);
+      return updated;
+    });
+  };
+
   const onSubmit = (updatedRecipe) => {
-    const newData = data.map((item) => (item.id === id ? { ...updatedRecipe, id } : item))
-    setdata(newData)
-    toast.success("Recipe updated successfully")
-    navigate('/recipes')
-  }
+    const newData = data.map((item) =>
+      item.id === id ? { ...updatedRecipe, id } : item
+    );
+    setdata(newData);
+    localStorage.setItem('recipes', JSON.stringify(newData));
+    toast.success('Recipe updated successfully');
+    navigate('/recipes');
+  };
 
-  // Delete recipe handler
   const handleDelete = () => {
-    const confirm = window.confirm("Are you sure you want to delete this recipe?")
+    const confirm = window.confirm('Are you sure you want to delete this recipe?');
     if (confirm) {
-      const filteredData = data.filter((item) => item.id !== id)
-      setdata(filteredData)
-      toast.success("Recipe deleted successfully")
-      navigate('/recipes')
+      const filteredData = data.filter((item) => item.id !== id);
+      setdata(filteredData);
+      localStorage.setItem('recipes', JSON.stringify(filteredData));
+      toast.success('Recipe deleted successfully');
+      navigate('/recipes');
     }
-  }
+  };
 
   return recipe ? (
     <div className='flex gap-4 p-6 text-white'>
-      
-      <div className='w-1/2'>
-        <img src={recipe.image} alt={recipe.title} className='w-full h-[30vh] object-cover rounded' />
+
+      {/* 🍽 Left section: Image + Heart */}
+      <div className='w-1/2 relative'>
+
+        {/* ❤️ Favorite Toggle - Top Right of Image */}
+        <span onClick={toggleFav} className='absolute top-2 right-2 cursor-pointer'>
+          {isFav ? (
+            <HeartSolid className='w-8 h-8 text-red-600' />
+          ) : (
+            <HeartOutline className='w-8 h-8 text-white' />
+          )}
+        </span>
+
+        <img
+          src={recipe.image}
+          alt={recipe.title}
+          className='w-full h-[30vh] object-cover rounded'
+        />
       </div>
 
+      {/* 📝 Right section: Form */}
       <div className='w-1/2'>
         <form onSubmit={handleSubmit(onSubmit)}>
           <input
@@ -112,7 +142,7 @@ const SinglePage = () => {
     </div>
   ) : (
     <div className='text-center text-white text-xl'>Loading...</div>
-  )
-}
+  );
+};
 
-export default SinglePage
+export default SinglePage;

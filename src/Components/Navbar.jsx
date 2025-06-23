@@ -1,9 +1,9 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom'
+import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 const Navbar = () => {
   return (
-    <nav className="flex justify-center gap-x-10 text-sm py-4 ">
+    <nav className="flex justify-center gap-x-10 text-sm py-4">
       <NavLink
         to="/"
         className={({ isActive }) =>
@@ -12,6 +12,7 @@ const Navbar = () => {
       >
         Home
       </NavLink>
+
       <NavLink
         to="/recipes"
         className={({ isActive }) =>
@@ -20,6 +21,7 @@ const Navbar = () => {
       >
         Recipes
       </NavLink>
+
       <NavLink
         to="/about"
         className={({ isActive }) =>
@@ -28,17 +30,26 @@ const Navbar = () => {
       >
         About
       </NavLink>
-       <NavLink
-  to="/create-recipe"
-  className={({ isActive }) =>
-    isActive ? 'text-red-300 underline' : 'text-white'
-  }
->
-  Create Recipe
-</NavLink>
 
+      <NavLink
+        to="/create-recipe"
+        className={({ isActive }) =>
+          isActive ? 'text-red-300 underline' : 'text-white'
+        }
+      >
+        Create Recipe
+      </NavLink>
+
+      <NavLink
+        to="/fav"
+        className={({ isActive }) =>
+          isActive ? 'text-red-300 underline' : 'text-white'
+        }
+      >
+        Favourite
+      </NavLink>
     </nav>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;

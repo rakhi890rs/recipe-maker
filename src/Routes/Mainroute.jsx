@@ -1,10 +1,12 @@
-import React from 'react'
-import { Routes, Route } from 'react-router-dom'
-import Home from '../Pages/Home'
-import Recipes from '../Pages/Recipes'
-import About from '../Pages/About'
-import Create from '../Pages/Create'
-import SinglePage from '../Pages/SinglePage' 
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import Home from '../Pages/Home';
+import Recipes from '../Pages/Recipes';
+import About from '../Pages/About';
+import Create from '../Pages/Create';
+import SinglePage from '../Pages/SinglePage';
+import { PageNotFound } from '../Pages/PageNotFound'; 
+import Fav from '../Pages/Fav';
 
 const Mainroute = () => {
   return (
@@ -14,8 +16,11 @@ const Mainroute = () => {
       <Route path="/about" element={<About />} />
       <Route path="/create-recipe" element={<Create />} />
       <Route path="/recipe/:id" element={<SinglePage />} />
-    </Routes>
-  )
-}
+      <Route path="*" element={<PageNotFound />} />
+      <Route path="/fav" element={<Fav />} />
 
-export default Mainroute
+    </Routes>
+  );
+};
+
+export default Mainroute;

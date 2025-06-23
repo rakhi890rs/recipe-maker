@@ -16,18 +16,13 @@ const Home = () => {
     }
   };
   useEffect(()=>{
-    console.log("Mouted");
     getproduct();
-
-    return ()=>{
-      console.log("unmounted")
-    }
-  })
+  },[]);
 
   return (
     <div>
-      <h1>Home</h1>
-      <button onClick={getproduct}>Get Products</button>
+      <h3>Home</h3>
+      <button className='bg-slate-950' onClick={getproduct}>Get Products</button>
     </div>
   );
 };
