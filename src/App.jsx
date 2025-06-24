@@ -4,7 +4,7 @@ import Mainroute from './Routes/Mainroute'
 
 const App = () => {
   return (
-    <div className='w-screen h-screen bg-gray-800 text-white font-thin px-[10%]'>
+    <div className='w-screen min-h-screen bg-gray-800 text-white font-thin px-[10%]'>
       <Navbar />
       <Mainroute />
     </div>
