@@ -33,16 +33,6 @@ Add, update, delete, and favorite recipes with a smooth user experience.
 
 ---
 
-## **Folder Structure**
-src/
-│
-├─ components/ # Navbar, Footer, reusable components
-├─ context/ # RecipeContext for global state
-├─ pages/ # Home, Recipes, Create, SinglePage, Fav, About, PageNotFound
-├─ routes/ # Mainroute.jsx
-├─ App.jsx
-├─ index.jsx
-
 1. Clone the repo:
 
 ```bash
