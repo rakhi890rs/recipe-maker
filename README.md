@@ -1,17 +1,61 @@
-<<<<<<< HEAD
-# React + Vite
+# Recipe Maker 🍳
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A **full-featured recipe management app** built with **React**, **Context API**, **React Hook Form**, **React Router**, **Axios**, **LocalStorage**, and **Tailwind CSS**.  
+Add, update, delete, and favorite recipes with a smooth user experience.  
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## **Features**
 
-## Expanding the ESLint configuration
+- **Add new recipes** with image, title, chef name, description, ingredients, instructions, and category.  
+- **Update and delete recipes** easily.  
+- **Favorite recipes** with heart toggle, persisted in localStorage.  
+- **Dynamic routing** for viewing individual recipes.  
+- **Persistent data** using localStorage (recipes stay even after page reload).  
+- **Responsive UI** built with Tailwind CSS.  
+- **User-friendly notifications** using React Toastify.  
+- **Axios** used for potential API calls (can be extended to fetch/store recipes from a server).  
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-=======
-# recipe-maker
-A simple React-based Recipe Maker application where users can create, add, and manage their favorite recipes. Built with ReactJS, this app allows users to input recipe names, ingredients, and instructions to organize their cooking ideas easily.
->>>>>>> e7345e61e8dfa60831ad57fa9aa503f21f0375f7
+---
+
+## **Tech Stack**
+
+- **React** - Frontend UI  
+- **Context API** - Global state management  
+- **React Hook Form** - Form handling & validation  
+- **React Router v6** - Routing & dynamic routes  
+- **Axios** - HTTP requests / API calls  
+- **Tailwind CSS** - Styling  
+- **LocalStorage** - Data persistence  
+- **React Toastify** - Notifications  
+- **nanoid** - Unique recipe IDs  
+- **Heroicons** - Icons  
+
+---
+
+## **Folder Structure**
+src/
+│
+├─ components/ # Navbar, Footer, reusable components
+├─ context/ # RecipeContext for global state
+├─ pages/ # Home, Recipes, Create, SinglePage, Fav, About, PageNotFound
+├─ routes/ # Mainroute.jsx
+├─ App.jsx
+├─ index.jsx
+
+1. Clone the repo:
+
+```bash
+git clone https://github.com/rakhi890rs/recipe-maker.git
+Install dependencies:
+
+cd recipe-maker
+npm install
+Run the app:
+npm start
+
+Open http://localhost:5173
+ in your browser.
+
+
+
